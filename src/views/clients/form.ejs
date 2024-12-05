@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4 has-text-centered">
+            <%= client ? "Editar Cliente" : "Agregar Nuevo Cliente" %>
+        </h1>
+
+        <form action="<%= client ? `/clients/edit/${client.id}` : '/clients/create' %>" method="POST">
+            <!-- Nombre -->
+            <div class="field">
+                <label class="label" for="name">Nombre</label>
+                <div class="control">
+                    <input 
+                        class="input" 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Nombre del cliente" 
+                        value="<%= client ? client.name : '' %>" 
+                        required 
+                    />
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="field">
+                <label class="label" for="email">Email</label>
+                <div class="control">
+                    <input 
+                        class="input" 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Correo electrónico" 
+                        value="<%= client ? client.email : '' %>" 
+                        required 
+                    />
+                </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="field">
+                <label class="label" for="phone">Teléfono</label>
+                <div class="control">
+                    <input 
+                        class="input" 
+                        type="text" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="Número de teléfono" 
+                        value="<%= client ? client.phone : '' %>" 
+                        required 
+                    />
+                </div>
+            </div>
+
+            <!-- Dirección -->
+            <div class="field">
+                <label class="label" for="address">Dirección</label>
+                <div class="control">
+                    <textarea 
+                        class="textarea" 
+                        id="address" 
+                        name="address" 
+                        placeholder="Dirección del cliente"
+                    ><%= client ? client.address : '' %></textarea>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="field is-grouped is-justify-content-center">
+                <div class="control">
+                    <button class="button is-link" type="submit">
+                        <%= client ? "Guardar Cambios" : "Agregar Cliente" %>
+                    </button>
+                </div>
+                <div class="control">
+                    <a href="/clients" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

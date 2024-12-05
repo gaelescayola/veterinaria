@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4 has-text-centered">Lista de Clientes</h1>
+
+        <!-- Botón para agregar un nuevo cliente -->
+        <div class="mb-4">
+            <a href="/clients/create" class="button is-link">
+                <span class="icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>Agregar Cliente</span>
+            </a>
+        </div>
+
+        <!-- Tabla de Clientes -->
+        <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+            <thead class="has-background-info-light">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (clients.length > 0) { %>
+                    <% clients.forEach((client, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><strong><%= client.name %></strong></td>
+                            <td><%= client.email %></td>
+                            <td><%= client.phone %></td>
+                            <td><%= client.address || "N/A" %></td>
+                            <td>
+                                <a href="/clients/edit/<%= client.id %>" class="button is-small is-info">
+                                    <span class="icon">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                    <span>Editar</span>
+                                </a>
+                                <a href="/clients/delete/<%= client.id %>" class="button is-small is-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">
+                                    <span class="icon">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span>Eliminar</span>
+                                </a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="6" class="has-text-centered">No hay clientes registrados.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

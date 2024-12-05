@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* CSS personalizado para sticky footer */
+        html, body {
+            height: 100%; /* El documento debe ocupar toda la altura de la ventana */
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Asegura que el contenedor principal ocupe toda la altura */
+        }
+
+        .content-wrap {
+            flex: 1; /* Empuja el footer hacia el final */
+        }
+
+        .footer {
+            background-color: #222; /* Fondo oscuro */
+            color: #fff; /* Texto claro */
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Navbar -->
+        <nav class="navbar is-dark">
+            <div class="navbar-brand">
+                <a class="navbar-item has-text-weight-bold is-size-5" href="#">
+                    🐾 Veterinaria
+                </a>
+                <a role="button" class="navbar-burger" data-target="navbarMenu" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/clients" class="navbar-item">
+                        <i class="fas fa-user-friends mr-2"></i> Clientes
+                    </a>
+                    <a href="/pets" class="navbar-item">
+                        <i class="fas fa-paw mr-2"></i> Mascotas
+                    </a>
+                    <a href="/services" class="navbar-item">
+                        <i class="fas fa-briefcase-medical mr-2"></i> Servicios
+                    </a>
+                    <a href="/appointments" class="navbar-item">
+                        <i class="fas fa-calendar-alt mr-2"></i> Citas
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content-wrap">
+            <section class="section">
+                <div class="container">
+                    <%- body %>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Veterinaria 🐾</strong> - Cuidando a tus mascotas desde 2023.
+                </p>
+                <p>
+                    <a href="https://www.example.com" class="has-text-light">
+                        <i class="fas fa-globe"></i> Sitio Web
+                    </a> | 
+                    <a href="https://www.facebook.com" class="has-text-light">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a> | 
+                    <a href="https://www.twitter.com" class="has-text-light">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                </p>
+                <p>
+                    <small>&copy; 2023 Veterinaria. Todos los derechos reservados.</small>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script para la funcionalidad del menú -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navbarBurger = document.querySelector(".navbar-burger");
+            const navbarMenu = document.querySelector("#navbarMenu");
+
+            navbarBurger.addEventListener("click", () => {
+                navbarBurger.classList.toggle("is-active");
+                navbarMenu.classList.toggle("is-active");
+            });
+        });
+    </script>
+</body>
+</html>

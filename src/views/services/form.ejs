@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4"><%= service ? "Editar Servicio" : "Agregar Nuevo Servicio" %></h1>
+        <form action="<%= service ? `/services/edit/${service.id}` : '/services/create' %>" method="POST">
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" value="<%= service ? service.name : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Descripción</label>
+                <div class="control">
+                    <textarea class="textarea" name="description" placeholder="Descripción del servicio">
+                        <%= service ? service.description : '' %>
+                    </textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Precio</label>
+                <div class="control">
+                    <input class="input" type="number" name="price" value="<%= service ? service.price : '' %>" step="0.01" required>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit"><%= service ? "Guardar Cambios" : "Agregar Servicio" %></button>
+                </div>
+                <div class="control">
+                    <a href="/services" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4"><%= appointment ? "Editar Cita" : "Agregar Nueva Cita" %></h1>
+        <form action="<%= appointment ? `/appointments/edit/${appointment.id}` : '/appointments/create' %>" method="POST">
+            <div class="field">
+                <label class="label">Fecha</label>
+                <div class="control">
+                    <input class="input" type="date" name="date" value="<%= appointment ? appointment.date : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Hora</label>
+                <div class="control">
+                    <input class="input" type="time" name="time" value="<%= appointment ? appointment.time : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Mascota</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select name="pet_id" required>
+                            <% pets.forEach(pet => { %>
+                                <option value="<%= pet.id %>" <%= appointment && appointment.pet_id === pet.id ? "selected" : "" %>>
+                                    <%= pet.name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Servicio</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select name="service_id" required>
+                            <% services.forEach(service => { %>
+                                <option value="<%= service.id %>" <%= appointment && appointment.service_id === service.id ? "selected" : "" %>>
+                                    <%= service.name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit"><%= appointment ? "Guardar Cambios" : "Agregar Cita" %></button>
+                </div>
+                <div class="control">
+                    <a href="/appointments" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

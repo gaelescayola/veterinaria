@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4"><%= pet ? "Editar Mascota" : "Agregar Nueva Mascota" %></h1>
+        <form action="<%= pet ? `/pets/edit/${pet.id}` : '/pets/create' %>" method="POST">
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" value="<%= pet ? pet.name : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Especie</label>
+                <div class="control">
+                    <input class="input" type="text" name="species" value="<%= pet ? pet.species : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Raza</label>
+                <div class="control">
+                    <input class="input" type="text" name="breed" value="<%= pet ? pet.breed : '' %>">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Edad</label>
+                <div class="control">
+                    <input class="input" type="number" name="age" value="<%= pet ? pet.age : '' %>">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Dueño</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select name="client_id" required>
+                            <% clients.forEach(client => { %>
+                                <option value="<%= client.id %>" <%= pet && pet.client_id === client.id ? "selected" : "" %>>
+                                    <%= client.name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit"><%= pet ? "Guardar Cambios" : "Agregar Mascota" %></button>
+                </div>
+                <div class="control">
+                    <a href="/pets" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

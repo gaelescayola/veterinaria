@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4 has-text-centered">Lista de Mascotas</h1>
+        <a href="/pets/create" class="button is-link mb-4">Agregar Mascota</a>
+        <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Raza</th>
+                    <th>Edad</th>
+                    <th>Dueño</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (pets.length > 0) { %>
+                    <% pets.forEach((pet, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= pet.name %></td>
+                            <td><%= pet.species %></td>
+                            <td><%= pet.breed || "N/A" %></td>
+                            <td><%= pet.age || "N/A" %></td>
+                            <td><%= pet.client_name %></td>
+                            <td>
+                                <a href="/pets/edit/<%= pet.id %>" class="button is-small is-info">Editar</a>
+                                <a href="/pets/delete/<%= pet.id %>" class="button is-small is-danger" onclick="return confirm('¿Estás seguro de eliminar esta mascota?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="7" class="has-text-centered">No hay mascotas registradas.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
